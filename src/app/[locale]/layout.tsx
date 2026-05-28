@@ -37,6 +37,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: '⚽ WC PICKS — W杯2026予想',
     description: '2026 FIFA ワールドカップ グループリーグ順位予想',
+    images: ['/opengraph-image'],
   },
 }
 
