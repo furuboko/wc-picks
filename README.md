@@ -1,5 +1,10 @@
 # ⚽ WC PICKS — 2026 FIFA World Cup Group Stage Predictor
 
+[![GitHub stars](https://img.shields.io/github/stars/furuboko/wc-picks?style=social)](https://github.com/furuboko/wc-picks/stargazers)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org/)
+[![Firebase](https://img.shields.io/badge/Firebase-free_tier-orange?logo=firebase)](https://firebase.google.com/)
+
 [日本語版はこちら](README.ja.md)
 
 A self-hostable web app for predicting the 2026 FIFA World Cup group stage standings with friends.  
