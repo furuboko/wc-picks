@@ -58,6 +58,7 @@ functions/lib/
 
 # generated images / previews
 *.png
+!docs/screenshots/*.png
 scripts/
 
 # local files

@@ -2,8 +2,44 @@
 
 [English version here](README.md)
 
-友人同士で 2026 FIFA ワールドカップのグループリーグ順位を予想するウェブアプリです。
+友人同士で 2026 FIFA ワールドカップのグループリーグ順位を予想するウェブアプリです。  
 締切前に全グループの順位を予想し、公式結果が入力されると自動的にスコアが計算されます。
+
+---
+
+## スクリーンショット
+
+| ダッシュボード | ドラッグ＆ドロップ予想 |
+|:---:|:---:|
+| ![ダッシュボード](docs/screenshots/home-logged-in.png) | ![予想入力](docs/screenshots/predict.png) |
+
+| スコアボード | みんなの予想 |
+|:---:|:---:|
+| ![スコアボード](docs/screenshots/scores.png) | ![みんなの予想](docs/screenshots/predictions.png) |
+
+<details>
+<summary>📱 モバイル表示</summary>
+
+| ホーム | 予想入力 |
+|:---:|:---:|
+| ![モバイルホーム](docs/screenshots/mobile-home.png) | ![モバイル予想](docs/screenshots/mobile-predict.png) |
+
+</details>
+
+---
+
+## 機能
+
+- **Google ログイン** — ワンクリックでサインイン、パスワード不要
+- **ドラッグ＆ドロップ** で全 12 グループの順位を予想
+- 管理者が選択できる **4 種類の採点パターン**
+- 結果入力後の **自動採点**
+- グループ別内訳付き **スコアボード**
+- 締切まで非表示になる **予想公開** 機能
+- **モバイル対応** レスポンシブデザイン
+- Firebase 無料枠で **セルフホスト** 可能
+
+---
 
 ## 採点ルール
 
@@ -32,6 +68,8 @@ Classic と同じルールだが −3 ペナルティなし。
 
 1位的中 +3 / 2位的中 +2 / 3位的中 +1 を重複加算（最大 +6、ペナルティなし）。
 
+---
+
 ## スケジュール
 
 | 日時 | イベント |
@@ -53,7 +91,7 @@ Classic と同じルールだが −3 ペナルティなし。
 
 ```bash
 git clone <このリポジトリのURL>
-cd wc2026-hanabi-toto
+cd wc-picks
 npm install
 ```
 
@@ -156,7 +194,7 @@ npm run emulator   # Firebase エミュレーターを起動
 ## ファイル構成
 
 ```
-wc2026-hanabi-toto/
+wc-picks/
 ├── src/
 │   ├── app/
 │   │   ├── page.tsx              # ホーム（グループ一覧・予想状況）
@@ -192,3 +230,9 @@ wc2026-hanabi-toto/
 - [Firebase](https://firebase.google.com/) — Authentication, Firestore, Hosting
 - [Tailwind CSS](https://tailwindcss.com/)
 - [@dnd-kit](https://dndkit.com/) — ドラッグ&ドロップ
+
+---
+
+## ライセンス
+
+MIT

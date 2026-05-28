@@ -2,12 +2,48 @@
 
 [日本語版はこちら](README.ja.md)
 
-A web app for predicting the 2026 FIFA World Cup group stage standings with friends.
-Each participant predicts the final ranking of all 12 groups before the deadline, then scores are calculated automatically once the official results are entered.
+A self-hostable web app for predicting the 2026 FIFA World Cup group stage standings with friends.  
+Everyone submits their predictions before the deadline, then scores are calculated automatically once official results are entered.
+
+---
+
+## Screenshots
+
+| Dashboard | Drag & Drop Prediction |
+|:---:|:---:|
+| ![Dashboard](docs/screenshots/home-logged-in.png) | ![Predict](docs/screenshots/predict.png) |
+
+| Scoreboard | Everyone's Predictions |
+|:---:|:---:|
+| ![Scores](docs/screenshots/scores.png) | ![Predictions](docs/screenshots/predictions.png) |
+
+<details>
+<summary>📱 Mobile</summary>
+
+| Home | Predict |
+|:---:|:---:|
+| ![Mobile Home](docs/screenshots/mobile-home.png) | ![Mobile Predict](docs/screenshots/mobile-predict.png) |
+
+</details>
+
+---
+
+## Features
+
+- **Google Sign-In** — one-click login, no passwords
+- **Drag & Drop** predictions for all 12 groups
+- **4 scoring patterns** selectable by the admin
+- **Automatic scoring** once results are entered
+- **Scoreboard** with per-group breakdown
+- **Predictions reveal** — everyone's picks are hidden until the deadline passes
+- **Mobile-friendly** responsive design
+- **Self-hostable** on Firebase free tier
+
+---
 
 ## Scoring Rules
 
-The admin can choose one of four scoring patterns before the deadline. The default is **Classic**.
+The admin chooses one of four scoring patterns before the deadline. The default is **Classic**.
 
 ### Classic (default)
 
@@ -32,6 +68,8 @@ Same as Classic but without the −3 penalty.
 
 +3 for 1st correct, +2 for 2nd correct, +1 for 3rd correct — stacked (max +6, no penalty).
 
+---
+
 ## Schedule
 
 | Datetime | Event |
@@ -53,7 +91,7 @@ Same as Classic but without the −3 penalty.
 
 ```bash
 git clone <this-repo>
-cd wc2026-hanabi-toto
+cd wc-picks
 npm install
 ```
 
@@ -156,7 +194,7 @@ npm run emulator   # start Firebase emulators
 ## File Structure
 
 ```
-wc2026-hanabi-toto/
+wc-picks/
 ├── src/
 │   ├── app/
 │   │   ├── page.tsx              # Home (group list & prediction status)
@@ -192,3 +230,9 @@ wc2026-hanabi-toto/
 - [Firebase](https://firebase.google.com/) — Authentication, Firestore, Hosting
 - [Tailwind CSS](https://tailwindcss.com/)
 - [@dnd-kit](https://dndkit.com/) — drag & drop
+
+---
+
+## License
+
+MIT
