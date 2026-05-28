@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from 'next'
+import type { Metadata, ResolvingMetadata, Viewport } from 'next'
 import { Noto_Sans_JP } from 'next/font/google'
 import { NextIntlClientProvider, hasLocale } from 'next-intl'
 import { getMessages, setRequestLocale } from 'next-intl/server'
@@ -22,34 +22,41 @@ export const viewport: Viewport = {
   themeColor: '#1d4ed8',
 }
 
-export const metadata: Metadata = {
-  metadataBase: new URL(APP_URL),
-  title: '⚽ WC PICKS — W杯2026予想',
-  description: '2026 FIFA ワールドカップ グループリーグ順位予想',
-  openGraph: {
+type LayoutProps = {
+  children: React.ReactNode
+  params: Promise<{ locale: string }>
+}
+
+export async function generateMetadata(
+  { params }: Omit<LayoutProps, 'children'>,
+  _parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { locale } = await params
+  return {
+    metadataBase: new URL(APP_URL),
     title: '⚽ WC PICKS — W杯2026予想',
     description: '2026 FIFA ワールドカップ グループリーグ順位予想',
-    url: APP_URL,
-    siteName: 'WC PICKS',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: '⚽ WC PICKS — W杯2026予想',
-    description: '2026 FIFA ワールドカップ グループリーグ順位予想',
-  },
+    openGraph: {
+      title: '⚽ WC PICKS — W杯2026予想',
+      description: '2026 FIFA ワールドカップ グループリーグ順位予想',
+      url: APP_URL,
+      siteName: 'WC PICKS',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: '⚽ WC PICKS — W杯2026予想',
+      description: '2026 FIFA ワールドカップ グループリーグ順位予想',
+      images: [`/${locale}/opengraph-image`],
+    },
+  }
 }
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
 }
 
-type Props = {
-  children: React.ReactNode
-  params: Promise<{ locale: string }>
-}
-
-export default async function LocaleLayout({ children, params }: Props) {
+export default async function LocaleLayout({ children, params }: LayoutProps) {
   const { locale } = await params
   if (!hasLocale(routing.locales, locale)) {
     notFound()
