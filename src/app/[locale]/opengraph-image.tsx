@@ -1,4 +1,5 @@
 import { ImageResponse } from 'next/og'
+import { routing } from '@/i18n/routing'
 
 export const alt = 'WC PICKS — 2026 FIFA World Cup Group Stage Predictions'
 
@@ -8,6 +9,12 @@ export const size = {
 }
 
 export const contentType = 'image/png'
+
+export const dynamic = 'force-static'
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }))
+}
 
 export default function Image() {
   return new ImageResponse(
