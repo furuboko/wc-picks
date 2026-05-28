@@ -1,0 +1,46 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 管理者確認ヘルパー: allowlist コレクションに email ドキュメントが存在し role == 'admin'
+    function isAdmin() {
+      return exists(/databases/$(database)/documents/allowlist/$(request.auth.token.email)) &&
+        get(/databases/$(database)/documents/allowlist/$(request.auth.token.email)).data.role == 'admin';
+    }
+    // 締切タイムスタンプ（2026-06-11T23:59:00+09:00 = 2026-06-11T14:59:00Z）
+    function beforeDeadline() {
+      return request.time < timestamp.date(2026, 6, 11) + duration.value(14*3600+59*60, 's');
+    }
+    // 公開タイムスタンプ（2026-06-12T00:00:00+09:00 = 2026-06-11T15:00:00Z）
+    function afterReveal() {
+      return request.time >= timestamp.date(2026, 6, 11) + duration.value(15*3600, 's');
+    }
+
+    // ユーザープロフィール: 認証済みユーザー全員が読取可、本人のみ書込可
+    match /users/{uid} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && request.auth.uid == uid;
+    }
+    // allowlist（管理者テーブル）: 管理者のみ読書可
+    match /allowlist/{email} {
+      allow read: if request.auth != null && isAdmin();
+      allow write: if request.auth != null && isAdmin();
+    }
+    // 予想: 本人のみ書込（締切前）、自分のデータは常に読取可、他者のデータは公開後のみ読取可
+    match /predictions/{docId} {
+      allow read: if request.auth != null &&
+        (resource.data.userId == request.auth.uid || afterReveal());
+      allow create, update: if request.auth != null &&
+        request.resource.data.userId == request.auth.uid && beforeDeadline();
+    }
+    // 結果: 管理者のみ書込、認証済みユーザー全員が読取可
+    match /results/{groupId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && isAdmin();
+    }
+    // 設定（採点パターン等）: 管理者のみ書込、認証済みユーザー全員が読取可
+    match /settings/{doc} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && isAdmin();
+    }
+  }
+}

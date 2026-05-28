@@ -1,0 +1,163 @@
+{
+  "header": {
+    "navPredictions": "Predictions",
+    "navScores": "Scoreboard",
+    "navAdmin": "Admin",
+    "profileButton": "Profile",
+    "signInButton": "Sign in with Google"
+  },
+  "localeSwitcher": {
+    "label": "JA"
+  },
+  "home": {
+    "title": "Group Stage Predictor",
+    "appTitle": "⚽ WC PICKS",
+    "appDescription": "2026 FIFA World Cup Group Stage Predictor",
+    "inAppBrowserTitle": "🔗 Open in browser",
+    "inAppBrowserBody": "Google sign-in is not available\ninside the LINE app.",
+    "copyUrl": "Copy URL",
+    "copied": "Copied!",
+    "copyStep1": "Copy the URL with the button above",
+    "copyStep2": "Open Safari or Chrome",
+    "copyStep3": "Paste the URL in the address bar",
+    "signInButton": "Sign in with Google to join",
+    "deadlineLabel": "Deadline: {label}",
+    "deadlineSoon": "Deadline passed — revealing soon",
+    "viewScoreboard": "View Scoreboard (Results out!)",
+    "unpredict": "Not predicted: {count} groups"
+  },
+  "groupCard": {
+    "groupLabel": "Group {group}",
+    "unpredicted": "Not predicted",
+    "edit": "Edit",
+    "predict": "Predict",
+    "rankLabels": ["1st", "2nd", "3rd", "4th"]
+  },
+  "predict": {
+    "backToList": "← Back to list",
+    "groupTitle": "Group {group} Prediction",
+    "deadlinePassed": "Deadline passed — view only",
+    "dragHint": "Drag to reorder",
+    "firstSaveHint": "💡 Drag to reorder, or save as-is",
+    "unsavedWarning": "● Unsaved changes",
+    "saveDefault": "Save in this order",
+    "saveButton": "Save Prediction",
+    "saving": "Saving...",
+    "confirmLeave": "You have unsaved changes. Leave anyway?",
+    "invalidGroup": "Group {group} does not exist",
+    "redirecting": "Returning to home…",
+    "loadingAuth": "Checking authentication…",
+    "loadingPredictions": "Loading prediction…"
+  },
+  "predictions": {
+    "title": "Everyone's Predictions",
+    "subtitle": "Select a group to see all predictions",
+    "groupLabel": "Group {group}",
+    "submittedCount": "{submitted} / {total} predicted",
+    "userColumn": "User",
+    "rank": "{rank}",
+    "noPredictions": "No predictions yet",
+    "myLabel": "(you)",
+    "hiddenUntilDeadline": "Predictions will be revealed after the deadline (Jun 12, 2026 00:00 JST)",
+    "unpredicted": "Not predicted",
+    "teamsLegend": "Group {group} teams",
+    "loadingAggregating": "Aggregating predictions…",
+    "redirecting": "Returning to home…"
+  },
+  "scores": {
+    "title": "Scoreboard",
+    "scoringRulesLabel": "📋 Scoring Rules — {pattern}",
+    "tapToOpen": "Tap to expand",
+    "myRank": "You are #{rank} / {score} pts",
+    "noScore": "No score yet",
+    "tapHint": "👆 Tap a row to see the breakdown",
+    "rankColumn": "Rank",
+    "userColumn": "User",
+    "totalColumn": "Total",
+    "expandLabel": "Expand breakdown",
+    "myLabel": "(you)",
+    "groupLabel": "Group {group}",
+    "notYetRevealed": "Predictions will be revealed after the deadline (Jun 12, 2026 00:00 JST)",
+    "loading": "Aggregating results…",
+    "classic": {
+      "perfectTitle": "Perfect Match  +5 pts",
+      "perfectDesc": "All 4 positions match exactly",
+      "advancingTitle": "Top/Bottom Match  +3 pts",
+      "advancingDesc": "Top 2 and bottom 2 teams match (any order), and not a perfect match",
+      "penaltyTitle": "1st Eliminated  −3 pts",
+      "penaltyDesc": "Your 1st-place pick is eliminated in the group stage (only when neither ① nor ② applies)",
+      "noneDesc": "0 pts if none of ①②③ apply"
+    },
+    "no-penalty": {
+      "perfectTitle": "Perfect Match  +5 pts",
+      "perfectDesc": "All 4 positions match exactly",
+      "advancingTitle": "Top/Bottom Match  +3 pts",
+      "advancingDesc": "Top 2 and bottom 2 teams match (any order), and not a perfect match",
+      "noneDesc": "No penalty. 0 pts if neither ① nor ② applies"
+    },
+    "per-position": {
+      "perfectTitle": "Perfect Match  +5 pts",
+      "perfectDesc": "All 4 positions correct (+4 + bonus +1)",
+      "partialTitle": "Partial Match  +1–+4 pts",
+      "partialDesc": "+1 pt per correct position (max +4)",
+      "noneDesc": "No penalty. 0 pts if no positions match"
+    },
+    "top-heavy": {
+      "firstTitle": "1st Place Match  +3 pts",
+      "firstDesc": "1st-place pick matches",
+      "secondTitle": "2nd Place Match  +2 pts",
+      "secondDesc": "2nd-place pick matches (stacks with ①)",
+      "thirdTitle": "3rd Place Match  +1 pt",
+      "thirdDesc": "3rd-place pick matches (stacks)",
+      "noneDesc": "No penalty. Max +6 pts when 1st–3rd all match"
+    },
+    "scoreLabels": {
+      "perfect": "Perfect",
+      "advancing": "Top/Bottom",
+      "partial": "Partial",
+      "penalty": "1st Out",
+      "none": "-"
+    }
+  },
+  "admin": {
+    "title": "Admin — Enter Results",
+    "groupLabel": "Group",
+    "finalStandings": "Final Standings (Group {group})",
+    "advancingCount": "Advancing: {count} teams",
+    "dragHint": "Drag to reorder. 1st & 2nd always advance.",
+    "thirdHint": "Choose whether 3rd place also advances",
+    "saveResults": "Save Results",
+    "saving": "Saving...",
+    "scoringPattern": "Scoring Pattern",
+    "deadlineLocked": "Deadline passed — locked",
+    "savePattern": "Save Pattern",
+    "savingPattern": "Saving...",
+    "adminManagement": "Admin Management",
+    "adminAddDesc": "Add a Gmail address to grant admin access",
+    "emailPlaceholder": "example@gmail.com",
+    "roleUser": "User",
+    "roleAdmin": "Admin",
+    "addButton": "Add",
+    "adding": "Adding...",
+    "registered": "Registered: {count}",
+    "refresh": "Refresh",
+    "loading": "Loading…",
+    "remove": "Remove",
+    "removing": "Removing",
+    "noRegistered": "No entries",
+    "toastPatternSaved": "Scoring pattern saved",
+    "toastSaved": "Saved!",
+    "toastSaveFailed": "Failed to save. Please try again.",
+    "toastAddFailed": "Failed to add",
+    "toastRemoveFailed": "Failed to remove",
+    "toastInvalidEmail": "Please enter a valid email address",
+    "toastPatternFailed": "Failed to save",
+    "confirmRemove": "Remove {email}?",
+    "toastAdded": "Added {email}",
+    "toastRemoved": "Removed {email}"
+  },
+  "common": {
+    "loading": "Loading…",
+    "authRedirecting": "Please sign in. Returning to home…"
+  }
+}

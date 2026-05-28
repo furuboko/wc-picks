@@ -1,0 +1,163 @@
+{
+  "header": {
+    "navPredictions": "みんなの予想",
+    "navScores": "スコアボード",
+    "navAdmin": "管理",
+    "profileButton": "プロフィール",
+    "signInButton": "Googleでログイン"
+  },
+  "localeSwitcher": {
+    "label": "EN"
+  },
+  "home": {
+    "title": "グループリーグ予想",
+    "appTitle": "⚽ WC PICKS",
+    "appDescription": "2026 FIFA W杯 グループリーグ順位予想",
+    "inAppBrowserTitle": "🔗 ブラウザで開いてください",
+    "inAppBrowserBody": "LINEアプリ内ではGoogleログインが\n利用できません。",
+    "copyUrl": "URLをコピー",
+    "copied": "コピーしました！",
+    "copyStep1": "上のボタンでURLをコピー",
+    "copyStep2": "Safari または Chrome を開く",
+    "copyStep3": "アドレスバーに貼り付けてアクセス",
+    "signInButton": "Googleでログインして参加",
+    "deadlineLabel": "締切: {label}",
+    "deadlineSoon": "締切済 — まもなく公開",
+    "viewScoreboard": "スコアボードを見る（結果発表中）",
+    "unpredict": "未予想: {count}グループ"
+  },
+  "groupCard": {
+    "groupLabel": "グループ {group}",
+    "unpredicted": "未予想",
+    "edit": "編集する",
+    "predict": "予想する",
+    "rankLabels": ["1位", "2位", "3位", "4位"]
+  },
+  "predict": {
+    "backToList": "← 一覧に戻る",
+    "groupTitle": "グループ {group} の予想",
+    "deadlinePassed": "締切済 — 閲覧のみ",
+    "dragHint": "ドラッグして順位を並び替えてください",
+    "firstSaveHint": "💡 ドラッグして順位を並び替えるか、このまま保存できます",
+    "unsavedWarning": "● 未保存の変更があります",
+    "saveDefault": "この順番で保存",
+    "saveButton": "予想を保存",
+    "saving": "保存中...",
+    "confirmLeave": "未保存の変更があります。戻りますか？",
+    "invalidGroup": "グループ {group} は存在しません",
+    "redirecting": "ホームへ戻ります…",
+    "loadingAuth": "認証を確認中…",
+    "loadingPredictions": "予想を読み込み中…"
+  },
+  "predictions": {
+    "title": "みんなの予想",
+    "subtitle": "グループを選んで全員の予想を確認できます",
+    "groupLabel": "グループ {group}",
+    "submittedCount": "{submitted} / {total} 人が予想済み",
+    "userColumn": "ユーザー",
+    "rank": "{rank}位",
+    "noPredictions": "まだ予想がありません",
+    "myLabel": "（自分）",
+    "hiddenUntilDeadline": "予想は締切後（2026年6月12日 00:00 JST）に公開されます",
+    "unpredicted": "未予想",
+    "teamsLegend": "グループ {group} チーム一覧",
+    "loadingAggregating": "みんなの予想を集計中…",
+    "redirecting": "ホームへ戻ります…"
+  },
+  "scores": {
+    "title": "スコアボード",
+    "scoringRulesLabel": "📋 採点ルール — {pattern}",
+    "tapToOpen": "タップで開く",
+    "myRank": "あなたは {rank}位 / {score}点",
+    "noScore": "まだスコアがありません",
+    "tapHint": "👆 行をタップすると内訳を確認できます",
+    "rankColumn": "順位",
+    "userColumn": "ユーザー",
+    "totalColumn": "合計",
+    "expandLabel": "内訳展開",
+    "myLabel": "（自分）",
+    "groupLabel": "グループ {group}",
+    "notYetRevealed": "予想は締切後（2026年6月12日 00:00 JST）に公開されます",
+    "loading": "試合結果を集計中…",
+    "classic": {
+      "perfectTitle": "完全的中　+5点",
+      "perfectDesc": "1〜4位の順位がすべて一致",
+      "advancingTitle": "突破的中　+3点",
+      "advancingDesc": "上位2チーム（1・2位）と下位2チーム（3・4位）の組み合わせが一致（順不同）、かつ①以外",
+      "penaltyTitle": "1位敗退　−3点",
+      "penaltyDesc": "1位に予想したチームがグループステージで敗退した場合（①②に該当しない場合のみ）",
+      "noneDesc": "①②③のいずれも該当しない場合は 0点"
+    },
+    "no-penalty": {
+      "perfectTitle": "完全的中　+5点",
+      "perfectDesc": "1〜4位の順位がすべて一致",
+      "advancingTitle": "突破的中　+3点",
+      "advancingDesc": "上位2チーム（1・2位）と下位2チーム（3・4位）の組み合わせが一致（順不同）、かつ①以外",
+      "noneDesc": "ペナルティなし。①②以外は 0点"
+    },
+    "per-position": {
+      "perfectTitle": "完全的中　+5点",
+      "perfectDesc": "4位置すべて一致（+4 + ボーナス +1）",
+      "partialTitle": "部分的中　+1〜+4点",
+      "partialDesc": "正解した位置ごとに +1点（最大 +4）",
+      "noneDesc": "ペナルティなし。0位置一致の場合は 0点"
+    },
+    "top-heavy": {
+      "firstTitle": "1位的中　+3点",
+      "firstDesc": "1位の予想が一致",
+      "secondTitle": "2位的中　+2点",
+      "secondDesc": "2位の予想が一致（①と重複加算）",
+      "thirdTitle": "3位的中　+1点",
+      "thirdDesc": "3位の予想が一致（重複加算）",
+      "noneDesc": "ペナルティなし。重複加算で最大 +6点（1〜3位すべて的中）"
+    },
+    "scoreLabels": {
+      "perfect": "完全的中",
+      "advancing": "突破的中",
+      "partial": "部分的中",
+      "penalty": "1位敗退",
+      "none": "-"
+    }
+  },
+  "admin": {
+    "title": "管理者ページ — 結果入力",
+    "groupLabel": "グループ",
+    "finalStandings": "確定順位（グループ {group}）",
+    "advancingCount": "突破: {count}チーム",
+    "dragHint": "ドラッグして順位を並び替えてください。1位・2位は自動で突破確定。",
+    "thirdHint": "3位のみ突破するか選択してください",
+    "saveResults": "結果を保存",
+    "saving": "保存中...",
+    "scoringPattern": "採点パターン",
+    "deadlineLocked": "締切済 — 変更不可",
+    "savePattern": "採点パターンを保存",
+    "savingPattern": "保存中...",
+    "adminManagement": "管理者管理",
+    "adminAddDesc": "管理者権限を付与するGmailアドレスを追加してください",
+    "emailPlaceholder": "example@gmail.com",
+    "roleUser": "一般",
+    "roleAdmin": "管理者",
+    "addButton": "追加する",
+    "adding": "追加中...",
+    "registered": "登録済み: {count}人",
+    "refresh": "更新",
+    "loading": "読み込み中…",
+    "remove": "削除",
+    "removing": "削除中",
+    "noRegistered": "登録者なし",
+    "toastPatternSaved": "採点パターンを保存しました",
+    "toastSaved": "保存しました！",
+    "toastSaveFailed": "保存に失敗しました。再度お試しください。",
+    "toastAddFailed": "追加に失敗しました",
+    "toastRemoveFailed": "削除に失敗しました",
+    "toastInvalidEmail": "正しいメールアドレスを入力してください",
+    "toastPatternFailed": "保存に失敗しました",
+    "confirmRemove": "{email} を削除しますか？",
+    "toastAdded": "{email} を追加しました",
+    "toastRemoved": "{email} を削除しました"
+  },
+  "common": {
+    "loading": "読み込み中…",
+    "authRedirecting": "ログインが必要です。ホームへ戻ります…"
+  }
+}
