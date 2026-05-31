@@ -6,18 +6,20 @@
 import React from 'react'
 import { render, waitFor, act } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
-import { AuthProvider, useAuthContext } from './AuthContext'
+import { AuthProvider, useAuthContext, isIosSafari } from './AuthContext'
 
 // ---- Firebase モック --------------------------------------------------------
 
 const mockOnAuthStateChanged = vi.fn()
 const mockGetRedirectResult = vi.fn().mockResolvedValue(null)
 const mockSignInWithPopup = vi.fn()
+const mockSignInWithRedirect = vi.fn()
 const mockFirebaseSignOut = vi.fn()
 
 vi.mock('firebase/auth', () => ({
   GoogleAuthProvider: class {},
   signInWithPopup: (...args: unknown[]) => mockSignInWithPopup(...args),
+  signInWithRedirect: (...args: unknown[]) => mockSignInWithRedirect(...args),
   getRedirectResult: (...args: unknown[]) => mockGetRedirectResult(...args),
   signOut: (...args: unknown[]) => mockFirebaseSignOut(...args),
   onAuthStateChanged: (...args: unknown[]) => mockOnAuthStateChanged(...args),
@@ -246,5 +248,102 @@ describe('AuthContext — isAdmin 判定（Issue #90 修正の検証）', () => 
       expect(getValue().loading).toBe(false)
       expect(getValue().isAdmin).toBe(false)
     })
+  })
+})
+
+// ===========================================================================
+
+describe('isIosSafari — iOS Safari 判定', () => {
+  const originalNavigator = global.navigator
+
+  afterEach(() => {
+    Object.defineProperty(global, 'navigator', { value: originalNavigator, configurable: true })
+  })
+
+  function setUA(ua: string) {
+    Object.defineProperty(global, 'navigator', {
+      value: { userAgent: ua },
+      configurable: true,
+    })
+  }
+
+  it('iPhone Safari を iOS Safari と判定する', () => {
+    setUA('Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1')
+    expect(isIosSafari()).toBe(true)
+  })
+
+  it('iPad Safari を iOS Safari と判定する', () => {
+    setUA('Mozilla/5.0 (iPad; CPU OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1')
+    expect(isIosSafari()).toBe(true)
+  })
+
+  it('iPhone Chrome（CriOS）は iOS Safari と判定しない', () => {
+    setUA('Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/120.0.0.0 Mobile/15E148 Safari/604.1')
+    expect(isIosSafari()).toBe(false)
+  })
+
+  it('iPhone Firefox（FxiOS）は iOS Safari と判定しない', () => {
+    setUA('Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) FxiOS/120.0 Mobile/15E148 Safari/604.1')
+    expect(isIosSafari()).toBe(false)
+  })
+
+  it('iPhone Edge（EdgiOS）は iOS Safari と判定しない', () => {
+    setUA('Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) EdgiOS/120.0.0.0 Mobile/15E148 Safari/604.1')
+    expect(isIosSafari()).toBe(false)
+  })
+
+  it('macOS Safari は iOS Safari と判定しない', () => {
+    setUA('Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15')
+    expect(isIosSafari()).toBe(false)
+  })
+
+  it('Android Chrome は iOS Safari と判定しない', () => {
+    setUA('Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36')
+    expect(isIosSafari()).toBe(false)
+  })
+})
+
+// ===========================================================================
+
+describe('signIn — iOS Safari ITP 対応（Issue #8）', () => {
+  const originalNavigator = global.navigator
+
+  beforeEach(() => {
+    mockOnAuthStateChanged.mockReturnValue(vi.fn())
+    mockGetRedirectResult.mockResolvedValue(null)
+    mockSignInWithPopup.mockResolvedValue({ user: { uid: 'u1', displayName: 'Test', email: 't@test.com', photoURL: null } })
+    mockSignInWithRedirect.mockResolvedValue(undefined)
+  })
+
+  afterEach(() => {
+    Object.defineProperty(global, 'navigator', { value: originalNavigator, configurable: true })
+    vi.clearAllMocks()
+  })
+
+  function setUA(ua: string) {
+    Object.defineProperty(global, 'navigator', {
+      value: { userAgent: ua },
+      configurable: true,
+    })
+  }
+
+  it('iOS Safari では signInWithRedirect を呼び signInWithPopup を呼ばない', async () => {
+    setUA('Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1')
+
+    const { getValue } = await setup()
+    await act(async () => { await getValue().signIn() })
+
+    expect(mockSignInWithRedirect).toHaveBeenCalledOnce()
+    expect(mockSignInWithPopup).not.toHaveBeenCalled()
+  })
+
+  it('通常ブラウザでは signInWithPopup を呼び signInWithRedirect を呼ばない', async () => {
+    setUA('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36')
+
+    const { getValue } = await setup()
+    await act(async () => { await getValue().signIn() })
+
+    expect(mockSignInWithPopup).toHaveBeenCalledOnce()
+    expect(mockSignInWithRedirect).not.toHaveBeenCalled()
   })
 })

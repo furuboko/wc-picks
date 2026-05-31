@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from '
 import {
   GoogleAuthProvider,
   signInWithPopup,
+  signInWithRedirect,
   getRedirectResult,
   signOut as firebaseSignOut,
   onAuthStateChanged,
@@ -19,6 +20,19 @@ import { isAdmin as checkIsAdmin, saveUserProfile } from '@/lib/firestore'
 function isLineWebView(): boolean {
   if (typeof navigator === 'undefined') return false
   return /Line\//i.test(navigator.userAgent)
+}
+
+/**
+ * iOS Safari を判定する。
+ * ITP によりクロスオリジンポップアップがブロックされるため signInWithRedirect を使う必要がある。
+ * Chrome (CriOS), Firefox (FxiOS), Edge (EdgiOS), Opera (OPiOS) は除外する。
+ */
+export function isIosSafari(): boolean {
+  if (typeof navigator === 'undefined') return false
+  const ua = navigator.userAgent
+  const isIos = /iPhone|iPad|iPod/i.test(ua)
+  const isSafari = /Safari/i.test(ua) && !/CriOS|FxiOS|EdgiOS|OPiOS/i.test(ua)
+  return isIos && isSafari
 }
 
 /**
@@ -193,8 +207,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return
     }
 
-    // 通常ブラウザ: ポップアップ方式（UX が良い）
     const provider = new GoogleAuthProvider()
+
+    if (isIosSafari()) {
+      // iOS Safari は ITP によりクロスオリジンポップアップがブロックされる。
+      // リダイレクト方式はポップアップを使わないため ITP の影響を受けない。
+      // 認証完了後のプロフィール保存は useEffect 内の getRedirectResult で行う。
+      await signInWithRedirect(auth, provider)
+      return
+    }
+
+    // 通常ブラウザ: ポップアップ方式（UX が良い）
     const result = await signInWithPopup(auth, provider)
     // ログイン成功時のみプロフィールを保存（onAuthStateChanged では毎回書き込まれるため）
     const u = result.user
